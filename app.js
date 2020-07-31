@@ -2,7 +2,11 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send("<h1> Hola " + req.query.name + " ! </h1>");
+  let name = req.query.nombre;
+  if (!Object.keys(req.query).length){
+    name = "desconocido";
+  }
+  res.send("<h1> Hola " + name + "! </h1>");
 });
 
 app.listen(3000, () => console.log('Listening on port 3000!'));
