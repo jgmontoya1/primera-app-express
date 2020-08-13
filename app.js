@@ -1,12 +1,12 @@
-const express = require('express');
-const app = express();
+// saludame 2
+var express = require('express');
+var app = express();
 
-app.get('/', (req, res) => {
-  var nom = req.query.nombre
-  if (!(nom).length) {
-    nom = "desconocido"
+app.get('/makers/:name', (req, res) => {
+    var nom = req.params.name;
+    if (!(nom).length) {nom='desconocido';
   }
-  res.send("<h1> Hola " + nom + "! </h1>");
-});
-
+    var miString2 =(nom.trim().toLowerCase().replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))));
+    res.send(`<h1>Hola ${miString2}!` );
+  })
 app.listen(3000, () => console.log('Listening on port 3000!'));
