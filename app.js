@@ -1,12 +1,16 @@
-// saludame 2
+// saludame 1 ver1.0
 var express = require('express');
 var app = express();
 
-app.get('/makers/:name', (req, res) => {
-    var nom = req.params.name;
-    if (!(nom).length) {nom='desconocido';
-  }
-    var miString2 =(nom.trim().toLowerCase().replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))));
-    res.send(`<h1>Hola ${miString2}!` );
-  })
-app.listen(3000, () => console.log('Listening on port 3000!'));
+app.get('/', (req, res) => {
+  var nom = req.query.nombre
+  if (!(nom).length) {
+    nom = "desconocido"
+  }res.send(`<h1>Hola ${nom}!</h1>`);
+});
+
+app.get('*', (req, res)=> {
+  res.end('<h1>Hola Desconocido!</h1>');
+})
+
+app.listen(3000, () => console.log('Listening on port 3000!')); 
