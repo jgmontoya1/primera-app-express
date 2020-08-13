@@ -5,8 +5,8 @@ var app = express();
 app.get('/', (req, res) => {
   var nom = req.query.nombre
   if (!(nom).length) {
-    nom = "desconocido"
-  }res.send(`<h1>Hola ${nom}!</h1>`);
+    nom = "Desconocido"
+  }res.end(`<h1>Hola ${nom}!</h1>`);
 });
 
 app.get('*', (req, res)=> {
