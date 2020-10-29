@@ -1,16 +1,12 @@
-// saludame 1 version 1.3
-var express = require('express');
-var app = express();
+const express = require("express");
+const app = express();
 
-app.get('/', (req, res) => {
-  var nom = req.query.nombre
-  if (!(nom).length) {
-    nom = "desconocido"
-  }res.send(`<h1>Hola ${nom}!</h1>`);
+app.get("/", (req, res) => {
+  let requestQuery;
+  req.query.nombre && req.query.nombre.length > 0
+    ? (requestQuery = `Hola ${req.query.nombre}!`)
+    : (requestQuery = "Hola desconocido!");
+  res.send(`<h1>${requestQuery}</h1>`);
 });
 
-app.get('*', (req, res)=> {
-  res.end('<h1>"Hola desconocido!"</h1>');
-})
-
-app.listen(3000, () => console.log('Listening on port 3000!')); 
+app.listen(3000, () => console.log("Listening on port: 3000"));
